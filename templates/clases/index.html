@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+ 
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+   <p>
+           <a href="new.html" class="btn btn-success" role="button">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Nuevo
+                </a>
+            </p>
+    <table class="table table-bordered">
+    	<thead>
+    	 <tr>
+            <th>
+              Nombre
+            </th>
+             <th>
+              Descripción
+            </th>
+             <th>
+              url
+            </th>
+          </tr>
+        </thead>
+        {% for clase in object_list %}
+			    <tr>
+			    	<td>{{ clase.nombre }}</td>
+			    	<td>{{ clase.descripcion }}</td>
+			    	<td>{{ clase.url }}</td>
+			    </tr>
+			{% empty %}
+			<tr>
+			    <td>Sorry, no clases in this list.</td>
+			</tr>
+			{% endfor %}
+    </table>
+
+    <hr>
+
+
+{% endblock %}

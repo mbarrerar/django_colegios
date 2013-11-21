@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+ 
+{% endblock %}
+
+{% block content %}
+
+   <p>
+           <a href="new.html" class="btn btn-success" role="button">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Nuevo
+                </a>
+            </p>
+    <table id="tbl_colegios" class="tablesorter-bootstrap table table-hover table-striped table-bordered">
+    	<thead>
+    	 <tr>
+            <th>
+              Nombre
+            </th>
+             <th>
+              Comuna
+            </th>
+             <th>
+              Estado
+            </th>
+            <th>
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        {% for colegio in object_list %}
+			    <tr>
+			    	<td>{{ colegio.nombre }}</td>
+			    	<td>{{ colegio.comuna }}</td>
+			    	<td>{{ colegio.estado }}</td>
+            <td><a href="/colegio/{{ colegio.id }}"> Detalles </td>
+			    </tr>
+			{% empty %}
+			<tr>
+			    <td>Sorry, no clases in this list.</td>
+			</tr>
+			{% endfor %}
+    </table>
+
+    <hr>
+
+{% bootstrap_pagination lines url="/colegios/pagination?page=1" size="large" %}
+
+{% endblock %}
+
+
+

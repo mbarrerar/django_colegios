@@ -1,0 +1,47 @@
+{% extends 'bootstrap.html' %}
+
+{% load bootstrap3 %}
+
+{% block bootstrap3_content %}
+
+<!-- nav !-->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+               <a class="navbar-brand center" href="#"> Colegios Chile 2013 </a>
+               <span class="pull-right">
+                {% if user.is_authenticated %}
+                    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout">Salir</a></p>
+                {% else %}
+                    <p>Welcome, new user. Please log in.</p>
+                {% endif %}
+  </span>
+</div>
+<!-- end nav-->
+
+    <div class="container">
+     
+        {% block content %}
+      
+
+        {% endblock %}
+    </div>
+
+
+        <footer id="footer">
+      <div class="container">
+        <p class="text-muted credit">Django Testing</p>
+      </div>
+    </footer>
+
+    {% bootstrap_javascript jquery=True %}
+{% load staticfiles %}
+<script type="text/javascript" src="{% static "js/jquery.tablesorter.min.js" %}"></script>
+<script>
+$(document).ready(function() { 
+    // call the tablesorter plugin 
+    $("#tbl_colegios").tablesorter({ 
+        // sort on the first column and third column, order asc 
+        sortList: [[0,0],[2,0]] 
+    }); 
+}); 
+</script>
+{% endblock %}

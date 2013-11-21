@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+ 
+{% endblock %}
+
+{% block content %}
+<div class="row login">
+                 <div class="center col-lg-4 well clearfix">
+                     <legend class="legend">Hola! Bienvenido</legend>
+                     <p class="subheading">Por favor Ingrese sus datos</p>
+                    <form method="POST" class="formulario" action=".">
+                         {% csrf_token %}
+                         <input name="next" type="hidden" value="{{next}}">
+                        <div class="form-group">
+                        <label for="InputEmail" class="">Usuario</label><div class="input text required"><input name="username" class="form-control" placeholder="Ingrese su Usuario" maxlength="255" type="text" id="UserUsername"></div>
+                        </div>
+                        <div class="form-group">
+                        <label for="InputEmail" class="">Password</label><div class="input text required"><input name="password" class="form-control" placeholder="Ingrese password" maxlength="255" type="password" id="UserUsername"></div>
+
+                        </div>
+                         <div class="form-group pull-right">
+                                <button type="submit" class="btn btn-primary btn-md">
+                                    <span class="glyphicon glyphicon-log-in"></span> Ingresar
+                                </button>
+                         </div>
+                    </form>
+                         <div class="clearfix"></div>
+                         <hr>
+                         <div class="btn-links">
+                            <a href="#" class ="alert" id="">¿Olvidaste tu contraseña?</a>
+                        </div>
+    
+                 
+                </div>
+</div>
+
+
+{% endblock %}
