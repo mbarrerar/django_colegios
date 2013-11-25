@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse
 def auth_login(request):
     """ Verificar si el usuario esta autenticado, si lo esta redireccionar a la vista """
     if request.user.is_authenticated():
-        redirect(reverse('clases.index'))
+        redirect(reverse('colegios.index'))
 
     if request.method == "POST":
     	form = loginForm(request.POST)

@@ -1,2 +1,43 @@
-<h1> test </h1>
-<p>Colegio: {{ object.nombre }}</p>
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+ 
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">Colegio: {{ object.nombre }} <span class="badge pull-right">Alumnos: {{ object.nroalumnos }}</span></div>
+
+  <div class="panel-body">
+    <ul class="list-group">
+ 		 <li class="list-group-item">
+    		
+    		Region: {{ object.regione.nombre }}
+    		
+    		
+  		</li>
+  		<li class="list-group-item">
+  			Dependencia: {{ object.dependencia }}
+  		</li>
+  		<li class="list-group-item">
+  			Estado: {{ object.estado }}
+  		</li>
+</ul>
+  </div>
+
+</div>
+
+ {% buttons %}
+        <a href="/colegios/index" class="btn btn-primary">
+            {% bootstrap_icon "step-backward" %} Regresar
+        </a>
+    {% endbuttons %}
+{% endblock %}

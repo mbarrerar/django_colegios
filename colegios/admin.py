@@ -1,4 +1,4 @@
 from django.contrib import admin
-import models
+from .models import Colegios
 # Register your models here.
-admin.site.register(models.Colegios)
+admin.site.register(Colegios)

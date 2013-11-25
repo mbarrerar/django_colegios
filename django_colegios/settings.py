@@ -39,8 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'debug_toolbar',
     'braces',
+    'django_extensions',
     'bootstrap3',
     'colegios',
+    'login',
+    'inspector_panel',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7 
@@ -79,14 +82,15 @@ DATABASES = {
 
 LANGUAGE_CODE = 'es-cl'
 
-TIME_ZONE = 'UTC'
+
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
+TIME_ZONE = 'America/Santiago'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -102,3 +106,19 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_REDIRECT_URL = '/clases'
+DATE_FORMAT = 'd/m/Y'
+
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.cache.CacheDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+    'inspector_panel.panels.inspector.InspectorPanel',
+)
+

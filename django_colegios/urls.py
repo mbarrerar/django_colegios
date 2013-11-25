@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from colegios.views import index,detail
+from colegios.views import index,ColegioDetailView
 from login import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^colegios/', index.as_view(), name='colegios.index'),
     url(r'^accounts/logout/$', views.logout_view, name="login.logout"),
     url(r'^accounts/login/$', views.auth_login, name="login.login"),
-    url(r'^colegio/(?P<pk>[0-9]+)/$',detail.as_view(),name="colegios.detail"),
+    url(r'^colegio/(?P<pk>[0-9]+)/$',ColegioDetailView.as_view(),name="colegios.detail"),
     #url(r'^accounts/', include('registration.backends.simple.urls')),
    
 )+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

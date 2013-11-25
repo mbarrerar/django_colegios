@@ -1,14 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_extensions.db.models import TimeStampedModel
 # Create your models here.
 
-class Colegios(models.Model):
-    id = models.IntegerField(primary_key=True)
+class ColegiosManager(models.Manager):
+	def get_queryset(self):
+		return super(ColegiosManager, self).get_queryset().select_related('user')
+
+
+
+class Regiones(TimeStampedModel):
+    nombre = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return '[%s] %s' %(self.id,self.nombre)
+
+    class Meta:
+        ordering = ('id',)
+	
+class Colegios(TimeStampedModel):
     rbd = models.IntegerField()
     nombre = models.CharField(max_length=255)
     comuna = models.CharField(max_length=255)
     provincia = models.CharField(max_length=255)
-    regione_id = models.IntegerField()
+    regione = models.OneToOneField(Regiones)
     dependencia = models.CharField(max_length=255)
     area = models.CharField(max_length=255)
     estado = models.CharField(max_length=255)
@@ -17,9 +32,11 @@ class Colegios(models.Model):
     nroalumnos = models.IntegerField(blank=True, null=True)
     corporacion = models.CharField(max_length=255)
     web = models.CharField(max_length=255)
-    created = models.DateTimeField()
-    modified = models.DateTimeField()
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,null=True)
+    
+    relacionados = ColegiosManager()
 
     def __unicode__(self):
     	return self.nombre
+
+

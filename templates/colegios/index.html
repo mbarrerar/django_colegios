@@ -17,6 +17,7 @@
     <table id="tbl_colegios" class="tablesorter-bootstrap table table-hover table-striped table-bordered">
     	<thead>
     	 <tr>
+ 
             <th>
               Nombre
             </th>
@@ -33,10 +34,20 @@
         </thead>
         {% for colegio in object_list %}
 			    <tr>
+            
 			    	<td>{{ colegio.nombre }}</td>
 			    	<td>{{ colegio.comuna }}</td>
 			    	<td>{{ colegio.estado }}</td>
-            <td><a href="/colegio/{{ colegio.id }}"> Detalles </td>
+            <td>
+           {% buttons %}
+                  <a href="/colegio/{{ colegio.id }}" class="btn btn-sm btn-primary">
+                      {% bootstrap_icon "list" %} 
+                  </a>
+            {% endbuttons %}
+
+            </td>
+
+
 			    </tr>
 			{% empty %}
 			<tr>

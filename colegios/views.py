@@ -3,6 +3,8 @@ from django.views.generic import ListView,DetailView
 from braces.views import LoginRequiredMixin
 from .models import Colegios
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+import datetime
+from inspector_panel import debug
 
 # Create your views here.
 
@@ -11,6 +13,8 @@ class index(LoginRequiredMixin,ListView):
 	template_name = 'colegios/index.html'
 	paginate_by = 100
 	context_object_name = 'colegio_list'
+	"""queryset = Colegios.relacionados.filter()"""
+
 
 	def get_context_data(self, **kwargs):
 		context = super(index, self).get_context_data(**kwargs)
@@ -28,11 +32,22 @@ class index(LoginRequiredMixin,ListView):
 	            # If page is out of range (e.g. 9999), deliver last page of results.
 	            show_lines = paginator.page(paginator.num_pages)
 	        context['lines'] = show_lines
+
 		return context
 
-class detail(LoginRequiredMixin,DetailView):
+
+
+class ColegioDetailView(LoginRequiredMixin,DetailView):
 	model = Colegios
 	template_name = 'colegios/detail.html'
+
+	def get_time(self,**kwargs):
+		return datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+
+	def get_context_data(self, **kwargs):
+		context = super(ColegioDetailView, self).get_context_data(**kwargs)
+		context['date'] = self.get_time()
+		return context
 
 
 
