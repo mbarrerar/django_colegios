@@ -97,7 +97,7 @@ TIME_ZONE = 'America/Santiago'
 
 STATIC_URL = '/static/'
 
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.1','192.168.0.57')
 
 TEMPLATE_DIRS = (BASE_DIR.child("templates"),)
 

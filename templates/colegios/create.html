@@ -9,10 +9,11 @@
 {% block content %}
 <h1> Create Form</h1>
 
- <form role="form" action="/colegio/create/" method="post">
+ <form role="form" class="form-horizontal" action="/colegio/create/" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
 </form>
+
 
 {% endblock %}

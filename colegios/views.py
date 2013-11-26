@@ -1,18 +1,18 @@
 from django.shortcuts import render
-from django.views.generic import ListView,DetailView,CreateView
+from django.views.generic import ListView,DetailView,CreateView,DeleteView
 from braces.views import LoginRequiredMixin
 from colegios.models import Colegios
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 import datetime
 from inspector_panel import debug
 from colegios.forms import ColegioForm
-
-# Create your views here.
+from django.core.urlresolvers import reverse_lazy
+from core.views import MessageMixin
 
 class index(LoginRequiredMixin,ListView):
 	model = Colegios
 	template_name = 'colegios/index.html'
-	paginate_by = 100
+	paginate_by = 30
 	context_object_name = 'colegio_list'
 	"""queryset = Colegios.relacionados.filter()"""
 
@@ -44,16 +44,25 @@ class ColegioCreateView(LoginRequiredMixin,CreateView):
 	form_class= ColegioForm
 
 
+class ColegioDeleteView(MessageMixin,LoginRequiredMixin,DeleteView):
+        model = Colegios
+        success_url = '/colegios/'
+	success_message = 'Prueba'
+	
+
 class ColegioDetailView(LoginRequiredMixin,DetailView):
 	model = Colegios
 	template_name = 'colegios/detail.html'
-
+	
+	def get_ip(self):
+		return self.request.META['REMOTE_ADDR']
 	def get_time(self,**kwargs):
 		return datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
 	def get_context_data(self, **kwargs):
 		context = super(ColegioDetailView, self).get_context_data(**kwargs)
 		context['date'] = self.get_time()
+		context['ip'] = self.get_ip()
 		return context
 
 

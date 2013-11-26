@@ -1,0 +1,7 @@
+django
+django-debug-toolbar
+MySQL-python
+django-braces
+django-bootstrap3
+unipath
+django_extensions

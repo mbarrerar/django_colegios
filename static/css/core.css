@@ -36,8 +36,6 @@ margin-top: 3px;
 
 }
 
-
-
-.tablesorter-bootstrap .tablesorter-header {
-        cursor: pointer;
+.col-xs-4 {
+width: 27.333333%;
 }

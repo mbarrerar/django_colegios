@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="panel panel-default">
-  <div class="panel-heading">Colegio: {{ object.nombre }} <span class="badge pull-right">Alumnos: {{ object.nroalumnos }}</span></div>
+  <div class="panel-heading">Colegio: {{ object.nombre }} <span class="badge pull-right">{{ ip }}Alumnos: {{ object.nroalumnos }}</span></div>
   <div class="panel-body">
     <ul class="list-group">
  		 <li class="list-group-item">
@@ -40,7 +40,7 @@
   </div>
 </div>
     {% buttons %}
-        <a href="/colegios/index" class="btn btn-primary">
+        <a href="/colegios/" class="btn btn-primary">
             {% bootstrap_icon "step-backward" %} Regresar
         </a>
     {% endbuttons %}
