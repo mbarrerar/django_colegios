@@ -8,34 +8,38 @@
 
 {% block content %}
 
-
-
-
-
-
 <div class="panel panel-default">
   <div class="panel-heading">Colegio: {{ object.nombre }} <span class="badge pull-right">Alumnos: {{ object.nroalumnos }}</span></div>
-
   <div class="panel-body">
     <ul class="list-group">
  		 <li class="list-group-item">
-    		
-    		Region: {{ object.regione.nombre }}
-    		
-    		
+    		Region: {{ object.regione.nombre }}		
   		</li>
+       <li class="list-group-item">
+        Provincia: {{ object.provincia }}   
+      </li>
+       <li class="list-group-item">
+        Comuna: {{ object.comuna }}   
+      </li>
   		<li class="list-group-item">
   			Dependencia: {{ object.dependencia }}
   		</li>
-  		<li class="list-group-item">
-  			Estado: {{ object.estado }}
-  		</li>
+      <li class="list-group-item">
+        Corporación: {{ object.corporacion }}
+      </li>
+      <li class="list-group-item">
+        Web: {{ object.web }}
+      </li>
+      <li class="list-group-item">
+        Modifica: {{ object.user.get_full_name }}
+      </li>
+      <li class="list-group-item">
+        Estado: {{ object.estado }}
+      </li>
 </ul>
   </div>
-
 </div>
-
- {% buttons %}
+    {% buttons %}
         <a href="/colegios/index" class="btn btn-primary">
             {% bootstrap_icon "step-backward" %} Regresar
         </a>

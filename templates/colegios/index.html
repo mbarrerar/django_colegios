@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+{{ form.errors }}
    <p>
            <a href="new.html" class="btn btn-success" role="button">
                     <span class="glyphicon glyphicon-plus"></span>
@@ -36,7 +36,7 @@
 			    <tr>
             
 			    	<td>{{ colegio.nombre }}</td>
-			    	<td>{{ colegio.comuna }}</td>
+			    	<td>{{ colegio.regione.nombre }}</td>
 			    	<td>{{ colegio.estado }}</td>
             <td>
            {% buttons %}

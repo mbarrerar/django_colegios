@@ -5,9 +5,7 @@ from django_extensions.db.models import TimeStampedModel
 
 class ColegiosManager(models.Manager):
 	def get_queryset(self):
-		return super(ColegiosManager, self).get_queryset().select_related('user')
-
-
+		return super(ColegiosManager, self).get_queryset().select_related('user','regione')
 
 class Regiones(TimeStampedModel):
     nombre = models.CharField(max_length=255)
@@ -23,7 +21,7 @@ class Colegios(TimeStampedModel):
     nombre = models.CharField(max_length=255)
     comuna = models.CharField(max_length=255)
     provincia = models.CharField(max_length=255)
-    regione = models.OneToOneField(Regiones)
+    regione = models.ForeignKey(Regiones)
     dependencia = models.CharField(max_length=255)
     area = models.CharField(max_length=255)
     estado = models.CharField(max_length=255)
@@ -33,7 +31,6 @@ class Colegios(TimeStampedModel):
     corporacion = models.CharField(max_length=255)
     web = models.CharField(max_length=255)
     user = models.ForeignKey(User,null=True)
-    
     relacionados = ColegiosManager()
 
     def __unicode__(self):

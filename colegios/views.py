@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,CreateView
 from braces.views import LoginRequiredMixin
-from .models import Colegios
+from colegios.models import Colegios
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 import datetime
 from inspector_panel import debug
+from colegios.forms import ColegioForm
 
 # Create your views here.
 
@@ -36,6 +37,12 @@ class index(LoginRequiredMixin,ListView):
 		return context
 
 
+class ColegioCreateView(LoginRequiredMixin,CreateView):
+	model = Colegios
+	template_name = 'colegios/create.html'
+	success_url = '/colegios/'
+	form_class= ColegioForm
+
 
 class ColegioDetailView(LoginRequiredMixin,DetailView):
 	model = Colegios
@@ -48,6 +55,8 @@ class ColegioDetailView(LoginRequiredMixin,DetailView):
 		context = super(ColegioDetailView, self).get_context_data(**kwargs)
 		context['date'] = self.get_time()
 		return context
+
+
 
 
 
