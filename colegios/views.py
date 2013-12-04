@@ -55,6 +55,7 @@ class ColegioDetailView(LoginRequiredMixin,DetailView):
 	template_name = 'colegios/detail.html'
 	
 	def get_ip(self):
+		debug(self.request)
 		return self.request.META['REMOTE_ADDR']
 	def get_time(self,**kwargs):
 		return datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
